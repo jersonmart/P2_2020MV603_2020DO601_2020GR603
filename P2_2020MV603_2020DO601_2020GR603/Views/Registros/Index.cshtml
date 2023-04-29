@@ -1,0 +1,62 @@
+﻿<div class="text-center">
+    <h1>Registro de Covid</h1>
+    <br />
+    <h5>El siguiente formulario es para llevar el registro de casos reportados de Covid por departamento y genero.</h5>
+</div>
+<br />
+<br />
+<h4>Reportar casos</h4>
+<br />
+<form>
+@*Inicio *@
+<div class="form btn-group row mb-4">
+    <div class="col-sm-2">
+        <label>Departamento</label>
+    </div>
+    <div class="col-sm-4">
+        @Html.DropDownList("nombre_Departamento", ViewData["listadodeDepar"]as SelectList, "Seleccione un departamento", new {@class="form-control"})
+    </div>
+    <div class="col-sm-2">
+        <label>Genero</label>
+    </div>
+    <div class="col-sm-4">
+        @Html.DropDownList("Tipo_Genero", ViewData["listadodeGen"]as SelectList, "Seleccione un genero", new {@class="form-control"})
+    </div>
+</div>
+<div class="form btn-group row mb-4">
+    <div class="col-sm-2">
+        <label>Casos confirmados</label>
+    </div>
+    <div class="col-sm-4">
+        @Html.TextBox("casos_Confirmados", "", new {@class="form-control"})
+    </div>
+    <div class="col-sm-2">
+        <label>Numero de recuperados</label>
+    </div>
+    <div class="col-sm-4">
+        @Html.TextBox("casos_Recuperados", "", new {@class="form-control"})
+    </div>
+    <div class="col-sm-2">
+        <label>Numero de fallecidos</label>
+    </div>
+    <div class="col-sm-4">
+        @Html.TextBox("casos_Fallecidos", "", new {@class="form-control"})
+    </div>
+</div>
+<div class="text-center">
+    @using (Html.BeginForm("index", "inicio", FormMethod.Post))
+    {
+        <div>
+            <button type="button" class="btn btn-success col-sm-10 ">Guardar</button>
+
+        </div>
+
+    }
+ </div>
+
+
+
+@*Fin*@
+</form>
+@{
+}
