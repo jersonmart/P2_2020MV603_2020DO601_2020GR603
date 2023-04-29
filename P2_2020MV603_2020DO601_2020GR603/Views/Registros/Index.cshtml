@@ -7,52 +7,78 @@
 <br />
 <h4>Reportar casos</h4>
 <br />
-<form>
+<form asp-action="CrearRegistros">
 @*Inicio *@
-<div class="form btn-group row mb-4">
-    <div class="col-sm-2">
+<div class="form-group row mt-xxl-1">
+    <div class="form-group col">
         <label>Departamento</label>
+            <div class="col-sm-10">
+                @Html.DropDownList("id_departamento", ViewData["listadodeDepar"]as SelectList, "Seleccione un departamento", new {@class="form-control"})
+            </div>
     </div>
-    <div class="col-sm-4">
-        @Html.DropDownList("nombre_Departamento", ViewData["listadodeDepar"]as SelectList, "Seleccione un departamento", new {@class="form-control"})
-    </div>
-    <div class="col-sm-2">
+    <div class="form-group col">
         <label>Genero</label>
-    </div>
-    <div class="col-sm-4">
-        @Html.DropDownList("Tipo_Genero", ViewData["listadodeGen"]as SelectList, "Seleccione un genero", new {@class="form-control"})
-    </div>
-</div>
-<div class="form btn-group row mb-4">
-    <div class="col-sm-2">
-        <label>Casos confirmados</label>
-    </div>
-    <div class="col-sm-4">
-        @Html.TextBox("casos_Confirmados", "", new {@class="form-control"})
-    </div>
-    <div class="col-sm-2">
-        <label>Numero de recuperados</label>
-    </div>
-    <div class="col-sm-4">
-        @Html.TextBox("casos_Recuperados", "", new {@class="form-control"})
-    </div>
-    <div class="col-sm-2">
-        <label>Numero de fallecidos</label>
-    </div>
-    <div class="col-sm-4">
-        @Html.TextBox("casos_Fallecidos", "", new {@class="form-control"})
+            <div class="col-sm-10">
+                @Html.DropDownList("id_genero", ViewData["listadodeGen"]as SelectList, "Seleccione un genero", new {@class="form-control"})
+            </div>
     </div>
 </div>
-<div class="text-center">
-    @using (Html.BeginForm("index", "inicio", FormMethod.Post))
-    {
-        <div>
-            <button type="button" class="btn btn-success col-sm-10 ">Guardar</button>
-
+<br />
+<div class="form-group row mt-xxl-1">
+        <div class="form-group col">
+            <label>Casos confirmados</label>
+            <div class="col-sm-10">
+                @Html.TextBox("casos_Confirmados", "", new {@class="form-control"})
+            </div>
         </div>
+        <div class="form-group col">
+            <label>Numero de recuperados</label>
+            <div class="col-sm-10">
+                @Html.TextBox("casos_Recuperados", "", new {@class="form-control"})
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Numero de fallecidos</label>
+            <div class="col-sm-10">
+                @Html.TextBox("casos_Fallecidos", "", new {@class="form-control"})
+            </div>
+        </div>
+</div>
+<br />
+<div class="form-group row">
+    <button class="col-xxl-4 flex-fill btn btn-success lead btn-lg">Guardar Registro</button>
+</div>
+<br />
+    <div class="form-group">
+        <h2 class="h4 pt-xxl-5">Casos Reportados</h2>
+        <hr class="hr mt-xl-3" />
 
-    }
- </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Departamento</th>
+                    <th>Genero</th>
+                    <th>Confirmados</th>
+                    <th>Recuperados</th>
+                    <th>Fallecidos</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reporte in (IEnumerable<dynamic>)ViewData["listadodeCasos"])
+                {
+                    <tr>
+                        <th scope="row">@reporte.nombre_departamento</th>
+                        <td>@reporte.nombre_genero</td>
+                        <td>@reporte.casos_confirmados</td>
+                        <td>@reporte.recuperados</td>
+                        <td>@reporte.fallecidos</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
 
 
 
