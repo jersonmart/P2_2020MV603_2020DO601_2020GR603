@@ -1,0 +1,47 @@
+﻿@model IEnumerable<P2_2020MV603_2020DO601_2020GR603.Models.Casos_Reportados>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Casos Confirmados</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.casos_Confirmados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.casos_Recuperados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.casos_Fallecidos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.casos_Confirmados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.casos_Recuperados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.casos_Fallecidos)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id_Casos">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id_Casos">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id_Casos">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
